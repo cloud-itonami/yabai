@@ -1,0 +1,107 @@
+;; yabai — 迷惑メール・詐称・不正の観測台帳
+;;
+;; ここに書くのは「観測」と「判定」で、両者を混ぜない。
+;; `:observation/*` は誰でも再現できる事実、`:verdict/*` は evidence を伴う判断。
+;; **evidence の無い判定は書かない。**
+;;
+;; 相方の `origins.edn` は良性側の台帳（ドメインが何であるか + 事前ラベル）。
+;; 1つのドメインを調べる人が2つの repo を見なくて済むよう、同じ repo の別パスに置く。
+
+{:schema "yabai.mail-abuse.v1"
+
+ ;; --------------------------------------------------------------------------
+ ;; 現在地 — 正直に
+
+ :status
+ {:corpus {:messages 1127
+           :domains 166
+           :source "cloud-itonami-app が同期した実受信トレイ（jun784）"
+           :as-of "2026-08-06"}
+  ;; **このコーパスからフィッシングは1件も出ていない。**
+  ;; ヒューリスティック（件名の「認証」「至急」「凍結」等）を当てたところ、
+  ;; 16 ドメインが引っかかったが、中身を読んだ結果すべて正規だった。
+  ;; 検出できなかったのではなく、無かった。
+  :phishing-found 0
+  :abusive-found 0
+  :suspected-found 0}
+
+ ;; --------------------------------------------------------------------------
+ ;; 偽陽性の記録 — これが一番役に立つ
+ ;;
+ ;; 「認証」「お支払い」を含むから怪しい、という判定は使えない。
+ ;; 正規のメールこそがその語を使うからで、下はその実例。
+ ;; 後からルールを書く人が同じ誤りを繰り返さないために残す。
+
+ :false-positives
+ [{:domain "ftx.com"
+   :flagged-by :heuristic/brand-name-mismatch
+   :observation/subject "FTX Recovery Trust – Completed Distribution to …"
+   :verdict :legitimate
+   :note (str "破綻した取引所を名乗るため詐称に見えるが、FTX Recovery Trust は "
+              "実在の破産財団で、債権者への配当は実際に進行中。"
+              "「破綻企業を名乗る = 詐欺」は成り立たない。")}
+
+  {:domain "vpass.ne.jp"
+   :flagged-by :heuristic/display-name-not-in-domain
+   :observation/display-name "三井住友カード"
+   :verdict :legitimate
+   :note (str "Vpass は三井住友カードの正規ドメイン。"
+              "表示名がドメイン文字列に含まれないことは詐称の証拠にならない —— "
+              "日本語の表示名とラテン文字のドメインでは原理的に一致しない。")}
+
+  {:domain "arrow.com"
+   :flagged-by :heuristic/verification-subject
+   :observation/subject "Arrow Electronics - Verify Your Email"
+   :verdict :legitimate
+   :note "電子部品商社の正規のメール確認。"}
+
+  {:domain "linkedin.com"
+   :flagged-by :heuristic/verification-subject
+   :observation/subject "新しいデバイスを認証してください"
+   :verdict :legitimate
+   :note "正規のデバイス認証通知。"}
+
+  {:domain "1password.com"
+   :flagged-by :heuristic/password-subject
+   :verdict :legitimate
+   :note (str "パスワード管理サービスなので、件名に「パスワード」が入るのは"
+              "当然。語の存在は情報量を持たない。")}]
+
+ ;; --------------------------------------------------------------------------
+ ;; 判定の語彙と、判定を下すのに必要なもの
+
+ :verdicts
+ {:legitimate    "正規。誤検知の記録として残す"
+  :suspected     "この deployment が観測した疑い。判定ではない"
+  :phishing      "詐称の証拠がある（SPF/DKIM/DMARC 不整合、詐称先の実ドメインとの相違、リンク先の不一致）"
+  :abusive       "spam / 不正の証拠がある（同意なき大量送信、既知の IOC との一致）"}
+
+ :evidence-kinds
+ {:auth-results     "Authentication-Results ヘッダ（SPF/DKIM/DMARC）"
+  :envelope-mismatch "エンベロープ送信者と From ヘッダの不一致"
+  :link-mismatch    "表示 URL と実リンク先の不一致"
+  :ioc-match        "既知の IOC（yabai の IocIndicator / PhishingUrl）との一致"
+  :reporter         "人による報告（誰が・いつ）"}
+
+ ;; --------------------------------------------------------------------------
+ ;; まだできないこと — 見つけさせない
+ ;;
+ ;; cloud-itonami-app は本文と件名しか保存していない。
+ ;; **Authentication-Results / Received / Return-Path を保存していないので、
+ ;; SPF/DKIM/DMARC による詐称判定は現時点で原理的にできない。**
+ ;; 上の :evidence-kinds のうち実際に使えるのは :reporter だけ。
+ ;;
+ ;; ここを埋めるには mail-gmail の message->normalized が
+ ;; :headers を落とさず保存する必要がある。それをするまで、この台帳の
+ ;; :phishing / :abusive は人の報告でしか増えない。
+
+ :gaps
+ [{:gap :headers-not-retained
+   :blocks #{:auth-results :envelope-mismatch}
+   :where "cloud-itonami-app: mail-gmail/message->normalized"
+   :note "認証ヘッダを保存していないため、詐称の機械判定ができない"}
+  {:gap :no-link-extraction
+   :blocks #{:link-mismatch}
+   :note "本文中のリンクを抽出・比較していない"}]
+
+ :entries []}
