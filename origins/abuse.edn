@@ -13,14 +13,26 @@
  ;; 現在地 — 正直に
 
  :status
- {:corpus {:messages 1127
-           :domains 166
+ {:corpus {:messages 1151
+           :domains 174
            :source "cloud-itonami-app が同期した実受信トレイ（jun784）"
-           :as-of "2026-08-06"}
+           :as-of "2026-08-07"}
+
+  ;; 2026-08-07 更新: 「原理的にできない」は解消した。
+  ;; 受信サーバー（Gmail）が計算した SPF/DKIM/DMARC を保存するようにしたので、
+  ;; 詐称は**推測ではなく受信側の判定**で答えられる。
+  :authentication {:evaluated 1075
+                   :authenticated 1039
+                   :unaligned 36
+                   :impersonation-suspected 0
+                   ;; ヘッダ保存を始める前に同期した分。pass に格上げしない。
+                   :unknown 76}
   ;; **このコーパスからフィッシングは1件も出ていない。**
-  ;; ヒューリスティック（件名の「認証」「至急」「凍結」等）を当てたところ、
-  ;; 16 ドメインが引っかかったが、中身を読んだ結果すべて正規だった。
-  ;; 検出できなかったのではなく、無かった。
+  ;;
+  ;; 2026-08-06 の時点では「判定できないので分からない」だった。
+  ;; 2026-08-07 現在は意味が違う —— 受信サーバーが 1,075 通を検査して 0 件。
+  ;; ヒューリスティックは16ドメインを引っかけたが全部正規で、
+  ;; DMARC は1件も不合格を出していない。
   :phishing-found 0
   :abusive-found 0
   :suspected-found 0}
@@ -85,23 +97,41 @@
 
  ;; --------------------------------------------------------------------------
  ;; まだできないこと — 見つけさせない
- ;;
- ;; cloud-itonami-app は本文と件名しか保存していない。
- ;; **Authentication-Results / Received / Return-Path を保存していないので、
- ;; SPF/DKIM/DMARC による詐称判定は現時点で原理的にできない。**
- ;; 上の :evidence-kinds のうち実際に使えるのは :reporter だけ。
- ;;
- ;; ここを埋めるには mail-gmail の message->normalized が
- ;; :headers を落とさず保存する必要がある。それをするまで、この台帳の
- ;; :phishing / :abusive は人の報告でしか増えない。
 
  :gaps
- [{:gap :headers-not-retained
-   :blocks #{:auth-results :envelope-mismatch}
-   :where "cloud-itonami-app: mail-gmail/message->normalized"
-   :note "認証ヘッダを保存していないため、詐称の機械判定ができない"}
-  {:gap :no-link-extraction
+ [{:gap :no-link-extraction
    :blocks #{:link-mismatch}
-   :note "本文中のリンクを抽出・比較していない"}]
+   :note "本文中のリンクを抽出・比較していない。表示 URL と実リンク先の不一致は未検出"}]
+
+ :closed-gaps
+ [{:gap :headers-not-retained
+   :was "認証ヘッダを保存していないため、詐称の機械判定ができない"
+   :closed "2026-08-07"
+   :by "cloud-itonami/cloud-itonami-app#51"
+   :note (str "Authentication-Results / Return-Path / Received-SPF の3ヘッダを保存する"
+              "ようにした。:auth-results と :envelope-mismatch が使えるようになり、"
+              "実コーパス 1,075 通が受信側判定で評価済み。"
+              "**ヘッダ保存前の 76 通は :unknown のままで、pass には格上げしない。**")}]
+
+ ;; --------------------------------------------------------------------------
+ ;; alignment が崩れるのは普通のこと — 告発しない
+ ;;
+ ;; 36 通が :unaligned（認証は通るが From: と封筒が別ドメイン）。
+ ;; 転送とメーリングリストは常にこうなる。実際の内訳:
+ ;;
+ ;;   11 emerging-future.org   NPO の会報（メーリングリスト）
+ ;;    8 clojureverse.org      Discourse フォーラム
+ ;;    3 junkawasaki.com       自ドメインからの転送
+ ;;    3 ts-expertholland.com  不動産のやり取り
+ ;;    3 propertyaccess.com
+ ;;
+ ;; これを「疑わしい」に畳んでいたら、**自分のドメインと法務・不動産の
+ ;; やり取りを含む 36 件を全部誤って告発していた。**
+ ;; :unaligned と :impersonation-suspected を別の値にしている理由がこれ。
+
+ :alignment-note
+ {:unaligned 36
+  :verdict :expected
+  :note "転送・メーリングリストは alignment を壊す。詐称ではない"}
 
  :entries []}
