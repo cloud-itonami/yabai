@@ -27,6 +27,14 @@
                    :impersonation-suspected 0
                    ;; ヘッダ保存を始める前に同期した分。pass に格上げしない。
                    :unknown 76}
+  ;; 上の Gmail コーパスとは別に、共有メールボックスの所有者が公開を
+  ;; 明示的に承認した Microsoft 365 隔離通知を記録する。受信者、テナント、
+  ;; メッセージ ID、隔離解除 URL は公開しない。
+  :reported-spam {:messages 10
+                  :domains 5
+                  :source :microsoft-365-quarantine
+                  :as-of "2026-08-17"
+                  :sharing :tlp/clear}
   ;; **このコーパスからフィッシングは1件も出ていない。**
   ;;
   ;; 2026-08-06 の時点では「判定できないので分からない」だった。
@@ -93,6 +101,7 @@
   :envelope-mismatch "エンベロープ送信者と From ヘッダの不一致"
   :link-mismatch    "表示 URL と実リンク先の不一致"
   :ioc-match        "既知の IOC（yabai の IocIndicator / PhishingUrl）との一致"
+  :provider-classification "受信サービスが付与した spam / phishing 分類"
   :reporter         "人による報告（誰が・いつ）"}
 
  ;; --------------------------------------------------------------------------
@@ -134,4 +143,93 @@
   :verdict :expected
   :note "転送・メーリングリストは alignment を壊す。詐称ではない"}
 
- :entries []}
+ :entries
+ [{:domain "novahotel.monster"
+   :verdict :abusive
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :prevented-spam}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "メールボックス所有者が明らかな spam と確認し、公開を承認"}]
+   :observations
+   [{:sender "elvaqll@novahotel.monster"
+     :subject "疲れを残さず、すっきり目覚める"
+     :observed-at "2026-08-16T20:18:37Z"}
+    {:sender "etqiwxw@novahotel.monster"
+     :subject "夜になると足がジンジン痛む？Akusoli は最初の一歩から足への負担を軽減します。"
+     :observed-at "2026-08-13T21:56:24Z"}
+    {:sender "uxzardd@novahotel.monster"
+     :subject "チタン製まな板"
+     :observed-at "2026-08-12T22:28:53Z"}
+    {:sender "alwiydt@novahotel.monster"
+     :subject "すっきり目覚めよう"
+     :observed-at "2026-08-11T20:53:21Z"}
+    {:sender "utmadkx@novahotel.monster"
+     :subject "今日から言葉の壁を越えよう"
+     :observed-at "2026-08-11T00:41:38Z"}]}
+
+  {:domain "elio-hotel.monster"
+   :verdict :abusive
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :prevented-spam}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "メールボックス所有者が明らかな spam と確認し、公開を承認"}]
+   :observations
+   [{:sender "ecbazrj@elio-hotel.monster"
+     :subject "運転中に目が疲れてはいけません。"
+     :observed-at "2026-08-14T06:43:32Z"}
+    {:sender "usnafyl@elio-hotel.monster"
+     :subject "両手が自由に使える理想的なヘッドライト。"
+     :observed-at "2026-08-13T07:04:07Z"}]}
+
+  {:domain "motor-shop.tech"
+   :verdict :abusive
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :prevented-spam}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "メールボックス所有者が明らかな spam と確認し、公開を承認"}]
+   :observations
+   [{:sender "anduhrd@motor-shop.tech"
+     :subject "いつでも使える、あなた専用の翻訳機"
+     :observed-at "2026-08-05T21:43:41Z"}]}
+
+  {:domain "japanesesale.buzz"
+   :verdict :abusive
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :prevented-spam}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "メールボックス所有者が明らかな spam と確認し、公開を承認"}]
+   :observations
+   [{:sender "epdaccn@japanesesale.buzz"
+     :subject "どんな言語でも誰とでも話せる"
+     :observed-at "2026-08-03T07:20:26Z"}]}
+
+  {:domain "atelier-hotel.biz"
+   :verdict :abusive
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :prevented-spam}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "メールボックス所有者が明らかな spam と確認し、公開を承認"}]
+   :observations
+   [{:sender "orcehwx@atelier-hotel.biz"
+     :subject "すっきり目覚めよう"
+     :observed-at "2026-08-03T05:14:37Z"}]}]}
