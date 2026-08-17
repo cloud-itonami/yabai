@@ -22,7 +22,7 @@ with the reason.
 | what | AML / sanctions entity risk | email sender domains |
 | scored | 2026-03-16, one batch | as-of 2026-08-07 |
 | size | 469 entities, 464 evidence | 174 domains, 1,151 messages |
-| findings | 7 entities in the Deny band | Gmail corpus: **0 phishing, 0 abusive, 0 suspected**; owner report: **5 abusive domains / 10 messages** |
+| findings | 7 entities in the Deny band | Gmail corpus: **0 phishing, 0 abusive, 0 suspected**; owner report: **12 abusive domains + 1 abusive sender / 22 deliveries, 2 suspected domains / 3 messages** |
 | retractions | none recorded | **5 false positives recorded** |
 
 ---
@@ -72,9 +72,10 @@ The abuse ledger found nothing, and that is not the interesting part:
 Four verdict kinds (`:phishing :abusive :suspected :legitimate`) and six evidence
 kinds (`:auth-results :envelope-mismatch :ioc-match :link-mismatch :reporter` and
 `:provider-classification`) are defined. The Gmail corpus still has no abuse finding,
-while `:entries` now holds **five domain-level abusive verdicts covering ten spam
-messages** reported separately from a Microsoft 365 quarantine deployment on
-2026-08-17. `:false-positives` holds **five** records.
+while `:entries` now holds **twelve domain-level and one sender-level abusive verdicts
+covering 22 spam deliveries**, plus two domain-level suspected-phishing verdicts
+covering three messages. They were reported separately from a Microsoft 365 quarantine
+deployment on 2026-08-17. `:false-positives` holds **five** records.
 
 The reported entries publish only the sender address, lure subject, observation time,
 provider classification and owner approval. Recipient identity, tenant data, internal
@@ -83,7 +84,7 @@ folded into the Gmail corpus counters, so the corpus zero remains a truthful sco
 measurement rather than being overwritten by data from another deployment.
 
 Count what is there, not what a key is named: `:verdicts` is a *map of four verdict
-kinds*, not four verdicts issued. The verdicts actually issued are the five entries;
+kinds*, not four verdicts issued. The verdicts actually issued are the fifteen entries;
 reading the vocabulary itself as four more verdicts would still be wrong.
 
 And the file states why the zero is not evidence of safety:

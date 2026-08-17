@@ -30,11 +30,19 @@
   ;; 上の Gmail コーパスとは別に、共有メールボックスの所有者が公開を
   ;; 明示的に承認した Microsoft 365 隔離通知を記録する。受信者、テナント、
   ;; メッセージ ID、隔離解除 URL は公開しない。
-  :reported-spam {:messages 10
-                  :domains 5
+  :reported-spam {:messages 22
+                  :domains 12
+                  :sender-indicators 1
                   :source :microsoft-365-quarantine
                   :as-of "2026-08-17"
                   :sharing :tlp/clear}
+  ;; Provider が phishing と分類していても、本文・認証・リンクを検証できない
+  ;; 隔離通知だけでは :phishing に格上げしない。
+  :reported-suspected-phishing {:messages 3
+                                :domains 2
+                                :source :microsoft-365-quarantine
+                                :as-of "2026-08-17"
+                                :sharing :tlp/clear}
   ;; **このコーパスからフィッシングは1件も出ていない。**
   ;;
   ;; 2026-08-06 の時点では「判定できないので分からない」だった。
@@ -232,4 +240,168 @@
    :observations
    [{:sender "orcehwx@atelier-hotel.biz"
      :subject "すっきり目覚めよう"
-     :observed-at "2026-08-03T05:14:37Z"}]}]}
+     :observed-at "2026-08-03T05:14:37Z"}]}
+
+  {:domain "cheers-info.com"
+   :verdict :abusive
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :prevented-spam}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "メールボックス所有者が追加の迷惑メール分類と公開を承認"}]
+   :observations
+   [{:sender "researchind@cheers-info.com"
+     :subject "Global Security and Technology Summit 2026 Personal Information Processing"
+     :observed-at "2026-08-15T05:53:30Z"}]}
+
+  {:domain "leadrpro.ai"
+   :verdict :abusive
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :prevented-spam}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "メールボックス所有者が追加の迷惑メール分類と公開を承認"}]
+   :observations
+   [{:sender "chris@leadrpro.ai"
+     :subject "Stop evaluating security vendors for free (+$10 Bonus)"
+     :observed-at "2026-08-14T03:00:15Z"}]}
+
+  {:domain "frontier-info.jp"
+   :verdict :abusive
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :prevented-spam}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "メールボックス所有者が追加の迷惑メール分類と公開を承認"}]
+   :observations
+   [{:sender "c.kumakawa@frontier-info.jp"
+     :subject "53名の技術者提案（大量列挙された営業件名）"
+     :observed-at "2026-08-12T05:44:00Z"
+     :observed-copies 2}]}
+
+  {:domain "taiwea.uk"
+   :verdict :abusive
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :prevented-spam}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "メールボックス所有者が追加の迷惑メール分類と公開を承認"}]
+   :observations
+   [{:sender "wang@taiwea.uk"
+     :subject "<recipient>, A Brief Professional Inquiry"
+     :observed-at "2026-08-11T22:21:30Z"}]}
+
+  {:domain "globaldynameet.org"
+   :verdict :abusive
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :prevented-spam}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "メールボックス所有者が追加の迷惑メール分類と公開を承認"}]
+   :observations
+   [{:sender "rsato@globaldynameet.org"
+     :subject "御社サイトからの商談化について"
+     :observed-at "2026-08-05T02:39:54Z"}
+    {:sender "rsato@globaldynameet.org"
+     :subject "Re: 御社サイトからの商談化について"
+     :observed-at "2026-08-10T04:46:38Z"}]}
+
+  {:indicator/type :email-address
+   :indicator/value "byuk840@gmail.com"
+   :verdict :abusive
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :prevented-spam}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "同一件名を37分以内に3回送信。gmail.com 全体ではなく送信者だけを対象とする"}]
+   :observations
+   [{:sender "byuk840@gmail.com"
+     :subject "GREETINGS"
+     :observed-at "2026-08-07T12:15:46Z"}
+    {:sender "byuk840@gmail.com"
+     :subject "GREETINGS"
+     :observed-at "2026-08-07T12:31:36Z"}
+    {:sender "byuk840@gmail.com"
+     :subject "GREETINGS"
+     :observed-at "2026-08-07T12:52:05Z"}]}
+
+  {:domain "info.cloudinfolibrary.com"
+   :verdict :abusive
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :prevented-spam}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "メールボックス所有者が追加の迷惑メール分類と公開を承認"}]
+   :observations
+   [{:sender "mail.koimkivqflmetcaovcb@info.cloudinfolibrary.com"
+     :subject "ランサムウェア事例を使ったセキュリティ対策の営業"
+     :observed-at "2026-08-07T02:50:24Z"}]}
+
+  {:domain "optrio.co"
+   :verdict :abusive
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :prevented-spam}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "メールボックス所有者が追加の迷惑メール分類と公開を承認"}]
+   :observations
+   [{:sender "riley.cooper@optrio.co"
+     :subject "hitting your whole tam"
+     :observed-at "2026-08-03T14:04:12Z"}]}
+
+  {:domain "stevenbrennansllp.com"
+   :verdict :suspected
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :evaded-phishing}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "隔離通知のみ。本文・認証・リンク未検証のため phishing とは断定しない"}]
+   :observations
+   [{:sender "info@stevenbrennansllp.com"
+     :subject-pattern "POD/<digits>CA-POLICY/<digits>-01 to <recipient>"
+     :observed-at "2026-08-02T14:40:22Z"}
+    {:sender "info@stevenbrennansllp.com"
+     :subject-pattern "POD/<digits>CA-POLICY/<digits>-01 to <recipient>"
+     :observed-at "2026-08-02T14:58:16Z"}]}
+
+  {:domain "bukatsumedia-marke.com"
+   :verdict :suspected
+   :sharing :tlp/clear
+   :evidence
+   [{:kind :provider-classification
+     :provider :microsoft-365
+     :classification :evaded-phishing}
+    {:kind :reporter
+     :reported-at "2026-08-17"
+     :note "営業件名だけでは phishing の根拠にならないため suspected に留める"}]
+   :observations
+   [{:sender "info@bukatsumedia-marke.com"
+     :subject "部活のスポンサーになって採用に成功した事例"
+     :observed-at "2026-08-07T02:58:56Z"}]}]}
