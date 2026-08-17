@@ -22,7 +22,7 @@ with the reason.
 | what | AML / sanctions entity risk | email sender domains |
 | scored | 2026-03-16, one batch | as-of 2026-08-07 |
 | size | 469 entities, 464 evidence | 174 domains, 1,151 messages |
-| findings | 7 entities in the Deny band | **0 phishing, 0 abusive, 0 suspected** |
+| findings | 7 entities in the Deny band | Gmail corpus: **0 phishing, 0 abusive, 0 suspected**; owner report: **5 abusive domains / 10 messages** |
 | retractions | none recorded | **5 false positives recorded** |
 
 ---
@@ -58,7 +58,7 @@ the data does not quietly contradict it.
 104 of 174 domains are `:origin/kind :unknown`, which the `:counts` block states as
 `:classified 70`. Most of this corpus is unclassified and says so.
 
-## 2. `abuse.edn` explains its own zero ✅
+## 2. `abuse.edn` keeps the measured zero separate from reported spam ✅
 
 The abuse ledger found nothing, and that is not the interesting part:
 
@@ -69,15 +69,22 @@ The abuse ledger found nothing, and that is not the interesting part:
          :phishing-found 0 :abusive-found 0 :suspected-found 0}
 ```
 
-Four verdict kinds (`:phishing :abusive :suspected :legitimate`) and five evidence
-kinds (`:auth-results :envelope-mismatch :ioc-match :link-mismatch :reporter`) are
-**defined**. `:entries` is an empty vector — no abuse observation has been recorded.
-`:false-positives` holds **five** records. So the only judgements in the file are
-five retractions.
+Four verdict kinds (`:phishing :abusive :suspected :legitimate`) and six evidence
+kinds (`:auth-results :envelope-mismatch :ioc-match :link-mismatch :reporter` and
+`:provider-classification`) are defined. The Gmail corpus still has no abuse finding,
+while `:entries` now holds **five domain-level abusive verdicts covering ten spam
+messages** reported separately from a Microsoft 365 quarantine deployment on
+2026-08-17. `:false-positives` holds **five** records.
+
+The reported entries publish only the sender address, lure subject, observation time,
+provider classification and owner approval. Recipient identity, tenant data, internal
+message IDs and quarantine-release URLs are deliberately absent. The report is not
+folded into the Gmail corpus counters, so the corpus zero remains a truthful scoped
+measurement rather than being overwritten by data from another deployment.
 
 Count what is there, not what a key is named: `:verdicts` is a *map of four verdict
-kinds*, not four verdicts issued. Reading it as the latter turns "we defined a
-vocabulary" into "we condemned four domains."
+kinds*, not four verdicts issued. The verdicts actually issued are the five entries;
+reading the vocabulary itself as four more verdicts would still be wrong.
 
 And the file states why the zero is not evidence of safety:
 
