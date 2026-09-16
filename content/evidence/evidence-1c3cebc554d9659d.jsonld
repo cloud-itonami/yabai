@@ -1,0 +1,16 @@
+{
+  "@context": "https://yabai.etzhayyim.com/ontology/context.jsonld",
+  "@type": "etzhayyim:YabaiEvidence",
+  "@id": "https://yabai.etzhayyim.com/content/evidence/evidence-1c3cebc554d9659d",
+  "evidenceId": "evidence-1c3cebc554d9659d",
+  "entityId": "ent-f26c0007f204",
+  "category": "FraudSignal",
+  "source": "internal/owner-investigation-20260916",
+  "sourceReliability": "B",
+  "occurredAt": "2026-09-16T06:00:00Z",
+  "confidence": 0.85,
+  "severity": 3,
+  "probability": 0.2,
+  "jurisdiction": "JP",
+  "summary": "cluster: same IP 103.231.12.66 co-hosts lookalike domains yamatio.com (reg 2026-07-10) and yomotio.com (reg 2026-07-23), same GoDaddy pattern; siblings not yet serving content"
+}

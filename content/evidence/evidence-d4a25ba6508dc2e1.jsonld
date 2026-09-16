@@ -1,0 +1,16 @@
+{
+  "@context": "https://yabai.etzhayyim.com/ontology/context.jsonld",
+  "@type": "etzhayyim:YabaiEvidence",
+  "@id": "https://yabai.etzhayyim.com/content/evidence/evidence-d4a25ba6508dc2e1",
+  "evidenceId": "evidence-d4a25ba6508dc2e1",
+  "entityId": "ent-f26c0007f204",
+  "category": "FraudSignal",
+  "source": "internal/owner-investigation-20260916",
+  "sourceReliability": "B",
+  "occurredAt": "2026-09-16T06:00:00Z",
+  "confidence": 0.9,
+  "severity": 3,
+  "probability": 0.1,
+  "jurisdiction": "JP",
+  "summary": "infrastructure: registered 2026-08-28 GoDaddy with Domains By Proxy privacy, LE 90d cert issued same day, hosted 103.231.12.66 Cloudie Network HK (Converged Communications Ltd), openresty/1.31.1.1; prior life 2011-2021 as unrelated construction WP site (archive.org + crt.sh) = recycled expired domain"
+}

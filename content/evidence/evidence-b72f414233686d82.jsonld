@@ -1,0 +1,16 @@
+{
+  "@context": "https://yabai.etzhayyim.com/ontology/context.jsonld",
+  "@type": "etzhayyim:YabaiEvidence",
+  "@id": "https://yabai.etzhayyim.com/content/evidence/evidence-b72f414233686d82",
+  "evidenceId": "evidence-b72f414233686d82",
+  "entityId": "ent-f26c0007f204",
+  "category": "FraudSignal",
+  "source": "internal/owner-investigation-20260916",
+  "sourceReliability": "B",
+  "occurredAt": "2026-09-16T06:00:00Z",
+  "confidence": 0.95,
+  "severity": 3,
+  "probability": 0.05,
+  "jurisdiction": "JP",
+  "summary": "bot-wall cloaking: desktop/bot/datacenter clients get HTTP200 'Access Denied Device type bot is not allowed' wall; iPhone-Safari/WhatsApp UAs get the LP; root path serves OpenResty default page; robots.txt/sitemap 404"
+}

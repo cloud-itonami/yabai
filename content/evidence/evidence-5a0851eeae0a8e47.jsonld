@@ -1,0 +1,16 @@
+{
+  "@context": "https://yabai.etzhayyim.com/ontology/context.jsonld",
+  "@type": "etzhayyim:YabaiEvidence",
+  "@id": "https://yabai.etzhayyim.com/content/evidence/evidence-5a0851eeae0a8e47",
+  "evidenceId": "evidence-5a0851eeae0a8e47",
+  "entityId": "ent-4ee48b6b2e8a",
+  "category": "FraudSignal",
+  "source": "internal/owner-investigation-20260916",
+  "sourceReliability": "B",
+  "occurredAt": "2026-09-16T06:00:00Z",
+  "confidence": 0.8,
+  "severity": 2,
+  "probability": 0.3,
+  "jurisdiction": "JP",
+  "summary": "lookalike domain co-hosted on 103.231.12.66 with yamato-life.com (Cloudie Network HK, openresty); GoDaddy registration 2026-07-23; no served content at observation time 2026-09-16"
+}
