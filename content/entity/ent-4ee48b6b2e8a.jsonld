@@ -1,0 +1,13 @@
+{
+  "@context": "https://yabai.etzhayyim.com/ontology/context.jsonld",
+  "@type": "WebSite",
+  "@id": "https://yabai.etzhayyim.com/content/entity/ent-4ee48b6b2e8a",
+  "entityId": "ent-4ee48b6b2e8a",
+  "canonicalName": "yomotio.com",
+  "aliases": [
+    "yomotio.com"
+  ],
+  "websites": [
+    "https://yomotio.com/"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "@context": "https://yabai.etzhayyim.com/ontology/context.jsonld",
+  "@type": "WebSite",
+  "@id": "https://yabai.etzhayyim.com/content/entity/ent-f26c0007f204",
+  "entityId": "ent-f26c0007f204",
+  "canonicalName": "yamato-life.com",
+  "aliases": [
+    "yamato-life.com"
+  ],
+  "websites": [
+    "https://yamato-life.com/"
+  ]
+}

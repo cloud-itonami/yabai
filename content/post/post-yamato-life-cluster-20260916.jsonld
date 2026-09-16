@@ -1,0 +1,7 @@
+{
+  "@context": "https://yabai.etzhayyim.com/ontology/context.jsonld",
+  "@type": "app.bsky.feed.post",
+  "did": "did:web:yabai.etzhayyim.com:org:yamato_life_cluster_20260916",
+  "createdAt": "2026-09-16T07:00:00Z",
+  "text": "Observation: yamato-life.com /ja/ — suspected fake product pre-order landing page.\nRecycled expired domain (prior construction WP site 2011-2021) re-registered 2026-08-28 via GoDaddy + Domains By Proxy.\nCloaking bot-wall: bots/datacenter clients receive a fake HTTP200 'Access Denied' wall that fingerprints device type and country; mobile Safari/WhatsApp UAs receive the LP.\nLP content: 'Cyber Ronin // Neural Edges' RONIN-X smart glasses, fictional specs (Dual 8K Pulse-OLED, 144Hz), AI-generated imagery served from images.higgs.ai, dead 'Reserve Now' button (type=button, no form/checkout), no operator identity, no contact, no legal pages, root = OpenResty default page.\nHosting: 103.231.12.66 (Cloudie Network HK / Converged Communications Ltd), openresty/1.31.1.1, 90-day LE cert issued on registration day.\nCluster: co-hosted lookalikes yamatio.com, yomotio.com (GoDaddy, Jul 2026) currently dormant.\nEvidence: 6 items | Categories: FraudSignal | Public catalog surface: https://yabai.kotoba.cloud\n\n#yabai #FraudSignal"
+}
