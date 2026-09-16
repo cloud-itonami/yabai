@@ -1,0 +1,53 @@
+{
+  "@context": "https://yabai.etzhayyim.com/ontology/context.jsonld",
+  "@type": "TakedownTracking",
+  "@id": "https://yabai.etzhayyim.com/content/takedowns/yamato-cluster-20260916",
+  "caseId": "yamato-cluster-20260916",
+  "targetEntity": "ent-f26c0007f204",
+  "targetDomains": ["yamato-life.com", "yamatio.com", "yomotio.com"],
+  "hosting": {
+    "ip": "103.231.12.66",
+    "provider": "Cloudie Network HK / Converged Communications Ltd",
+    "registrar": "GoDaddy (Domains By Proxy privacy)"
+  },
+  "abuseContacts": ["abuse@cloudie.hk", "pang@laws.ms"],
+  "packetRef": {
+    "publicDossier": "https://yabai.kotoba.cloud/",
+    "evidenceIds": [
+      "evidence-478689313bac4959",
+      "evidence-5a0851eeae0a8e47",
+      "evidence-771cb4efd509aa54"
+    ]
+  },
+  "channels": [
+    {
+      "channel": "host-abuse-email",
+      "recipient": "abuse@cloudie.hk",
+      "preparedAt": "2026-09-16T08:34:13Z",
+      "submittedAt": null,
+      "result": "pending"
+    },
+    {
+      "channel": "godaddy-abuse-form",
+      "recipient": "GoDaddy abuse intake",
+      "preparedAt": "2026-09-16T08:34:13Z",
+      "submittedAt": null,
+      "result": "pending"
+    },
+    {
+      "channel": "npa-cyber-desk",
+      "recipient": "National Police Agency cyber-crime desk (Japan)",
+      "preparedAt": "2026-09-16T08:34:13Z",
+      "submittedAt": null,
+      "result": "pending"
+    },
+    {
+      "channel": "consumer-affairs-188",
+      "recipient": "Consumer Affairs Agency 188 (Japan)",
+      "preparedAt": "2026-09-16T08:34:13Z",
+      "submittedAt": null,
+      "result": "pending"
+    }
+  ],
+  "notes": "Tracking record only. submittedAt is set by the owner when a report is actually sent; the agent never sends external reports. result flips are inferred solely from observed domain state changes in scheduled sweeps (2026-09-16: yamato-life.com ALIVE with mobile-only LP on iPhone UA; yamatio.com and yomotio.com DEAD, already recorded as no-content in the public catalog)."
+}
