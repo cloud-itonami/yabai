@@ -1,0 +1,12 @@
+{
+  "@context": "https://yabai.etzhayyim.com/content/ontology/context.jsonld",
+  "@type": "etzhayyim:SmsLureChannel",
+  "@id": "https://yabai.etzhayyim.com/content/entity/ent-0e0e069e0f5d",
+  "entityId": "ent-0e0e069e0f5d",
+  "canonicalName": "SMS sender 070-3662-7130 (JP mobile range)",
+  "aliases": [
+    "070-3662-7130",
+    "07036627130"
+  ],
+  "telephone": "+817036627130"
+}
