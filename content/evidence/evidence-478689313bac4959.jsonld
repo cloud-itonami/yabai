@@ -1,0 +1,16 @@
+{
+  "@context": "https://yabai.etzhayyim.com/content/ontology/context.jsonld",
+  "@type": "etzhayyim:YabaiEvidence",
+  "@id": "https://yabai.etzhayyim.com/content/evidence/evidence-478689313bac4959",
+  "evidenceId": "evidence-478689313bac4959",
+  "entityId": "ent-0e0e069e0f5d",
+  "category": "FraudSignal",
+  "source": "internal/owner-investigation-20260916",
+  "sourceReliability": "B",
+  "occurredAt": "2026-09-16T07:55:00Z",
+  "confidence": 0.9,
+  "severity": 3,
+  "probability": 0.2,
+  "jurisdiction": "JP",
+  "summary": "first-party: SMS from this number delivering https://yamato-life.com/ja/ received by owner 2026-09-16 (JST); direct unshortened URL; zero public reports for the number on Bing/mojeek/DDG same day = disposable sender consistent with one-shot smishing rotation"
+}

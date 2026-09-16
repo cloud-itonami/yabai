@@ -1,0 +1,7 @@
+{
+  "@context": "https://yabai.etzhayyim.com/content/ontology/context.jsonld",
+  "@type": "app.bsky.feed.post",
+  "did": "did:web:yabai.etzhayyim.com:org:yamato_life_sms_lure_20260916",
+  "createdAt": "2026-09-16T08:00:00Z",
+  "text": "Observation update: yamato-life.com cluster is being distributed via SMS in Japan.\nFirst-party: 2026-09-16 JST, SMS from 070-3662-7130 (JP mobile range) delivered https://yamato-life.com/ja/ unshortened to owner's handset.\nSender number has zero public reports (Bing/mojeek/DuckDuckGo, curl-verified same day) - consistent with disposable rotation numbers.\nCloaking wall accepts only mobile Safari/WhatsApp fingerprints; the SMS vector closes the loop on why.\nEvidence: 2 items | Categories: FraudSignal | Public catalog surface: https://yabai.kotoba.cloud\n\n#yabai #FraudSignal"
+}

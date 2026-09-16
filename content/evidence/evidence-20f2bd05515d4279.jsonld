@@ -1,0 +1,16 @@
+{
+  "@context": "https://yabai.etzhayyim.com/content/ontology/context.jsonld",
+  "@type": "etzhayyim:YabaiEvidence",
+  "@id": "https://yabai.etzhayyim.com/content/evidence/evidence-20f2bd05515d4279",
+  "evidenceId": "evidence-20f2bd05515d4279",
+  "entityId": "ent-f26c0007f204",
+  "category": "FraudSignal",
+  "source": "internal/owner-investigation-20260916",
+  "sourceReliability": "B",
+  "occurredAt": "2026-09-16T07:55:00Z",
+  "confidence": 0.9,
+  "severity": 3,
+  "probability": 0.25,
+  "jurisdiction": "JP",
+  "summary": "lure channel observed: site is actively distributed by SMS to Japanese mobile numbers (sender 070-3662-7130); corroborates mobile-UA cloaking design; first distribution observation for the cluster"
+}
