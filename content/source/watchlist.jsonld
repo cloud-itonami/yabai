@@ -3,28 +3,31 @@
   "@type": "Dataset",
   "@id": "https://yabai.etzhayyim.com/content/source/watchlist",
   "name": "YABAI Consolidated Sanctions Watchlist",
-  "description": "Aggregated from OFAC SDN (18,712 entries), UN Security Council (1,002 entries), EU Financial Sanctions, UK OFSI, OpenSanctions (78,351 entries), Japan MOF/METI, and law enforcement actions. Priority-filtered to highest-impact designations.",
+  "description": "Aggregated from OFAC SDN (19,393 entries), UN Security Council (1,011 entries), EU Financial Sanctions, UK OFSI, OpenSanctions (72,610 entries), Japan MOF/METI, and law enforcement actions. Priority-filtered to highest-impact designations.",
   "generatedAt": "2026-03-16T12:00:00Z",
   "dataSources": [
     {
       "id": "ofac/sdn",
       "name": "US Treasury OFAC SDN List",
       "url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
-      "totalEntries": 18712,
+      "totalEntries": 19393,
+      "layer": "primary-fetched",
       "format": "CSV"
     },
     {
       "id": "un/consolidated",
       "name": "UN Security Council Consolidated List",
       "url": "https://scsanctions.un.org/resources/xml/en/consolidated.xml",
-      "totalEntries": 1002,
+      "totalEntries": 1011,
+      "layer": "primary-fetched",
       "format": "XML"
     },
     {
       "id": "opensanctions",
       "name": "OpenSanctions",
       "url": "https://data.opensanctions.org/datasets/latest/sanctions/targets.simple.csv",
-      "totalEntries": 78351,
+      "totalEntries": 72610,
+      "layer": "primary-fetched",
       "format": "CSV"
     },
     {
