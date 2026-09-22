@@ -26,7 +26,7 @@
       "id": "opensanctions",
       "name": "OpenSanctions",
       "url": "https://data.opensanctions.org/datasets/latest/sanctions/targets.simple.csv",
-      "totalEntries": 72615,
+      "totalEntries": 72623,
       "layer": "primary-fetched",
       "format": "CSV"
     },
