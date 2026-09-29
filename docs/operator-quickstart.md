@@ -9,7 +9,7 @@ in both directions.
 It also contains **ten fully addressed abuse-report emails**, which is the fact most
 worth knowing before touching anything here (§4).
 
-`CLAUDE.md` opens by declaring itself deprecated: the actor moved to
+`AGENTS.md` opens by declaring itself deprecated: the actor moved to
 `20-actors/yabai/actor-manifest.jsonld` (T1 MCP-Compose), and the `appview/` here is
 "retained as T3 fallback only". So this repository is a corpus and a fallback, not
 the live path.
@@ -128,7 +128,7 @@ entity / risk / evidence / public records. The 5 files under `content/post/` do 
 because they are `app.bsky.feed.post` records and carry no `@id` at all — a
 different shape, not a broken one.
 
-**The graduated thresholds are not graduated on this data.** `CLAUDE.md` defines
+**The graduated thresholds are not graduated on this data.** `AGENTS.md` defines
 Monitor ≥70, Challenge ≥85, Deny ≥95. Measured: 8 entities are ≥70, 8 are ≥85, and
 7 are ≥95. The Monitor band (70–85) is **empty** and the Challenge band holds exactly
 one. Seven of the eight flagged entities land straight in Deny. Nothing is wrong with
